@@ -53,8 +53,8 @@ function Registration() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!formData.fullName || !formData.phone) {
-      setStatus({ type: 'error', message: 'กรุณากรอกชื่อ-นามสกุล และเบอร์โทรศัพท์' })
+    if (!formData.fullName || !formData.nickname || !formData.phone || !formData.officeName || !formData.province) {
+      setStatus({ type: 'error', message: 'กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบทุกช่อง' })
       return
     }
 
@@ -124,7 +124,7 @@ function Registration() {
             <div className="form-group">
               <label className="form-label">
                 <Smile size={16} />
-                ชื่อเล่น
+                ชื่อเล่น <span className="required">*</span>
               </label>
               <input
                 type="text"
@@ -156,7 +156,7 @@ function Registration() {
             <div className="form-group">
               <label className="form-label">
                 <Building size={16} />
-                ชื่อสำนักงานบัญชี
+                ชื่อสำนักงานบัญชี <span className="required">*</span>
               </label>
               <input
                 type="text"
@@ -172,7 +172,7 @@ function Registration() {
             <div className="form-group">
               <label className="form-label">
                 <MapPin size={16} />
-                จังหวัด
+                จังหวัด <span className="required">*</span>
               </label>
               <SearchableSelect
                 options={PROVINCES}

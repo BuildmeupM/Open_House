@@ -26,8 +26,8 @@ router.post('/', async (req, res) => {
   try {
     const { fullName, nickname, phone, officeName, province } = req.body
 
-    if (!fullName || !phone) {
-      return res.status(400).json({ message: 'กรุณากรอกชื่อ-นามสกุล และเบอร์โทรศัพท์' })
+    if (!fullName || !nickname || !phone || !officeName || !province) {
+      return res.status(400).json({ message: 'กรุณากรอกข้อมูลให้ครบทุกช่อง' })
     }
 
     const [result] = await pool.execute(
