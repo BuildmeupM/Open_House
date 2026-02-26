@@ -8,18 +8,9 @@ function QRCodeSection({ inline }) {
   const [registrationUrl, setRegistrationUrl] = useState('')
 
   useEffect(() => {
-    // ตรวจสอบว่าเปิดจาก localhost หรือไม่
-    const hostname = window.location.hostname
-    const port = window.location.port
-    const protocol = window.location.protocol
-
-    if (hostname === 'localhost' || hostname === '127.0.0.1') {
-      // ถ้าเปิดจาก localhost ให้แสดงข้อความแจ้งเตือน
-      setRegistrationUrl(`${protocol}//${hostname}:${port}/registration`)
-    } else {
-      // ถ้าเปิดจาก IP จริงแล้ว ใช้ URL นั้นเลย
-      setRegistrationUrl(`${protocol}//${hostname}:${port}/registration`)
-    }
+    const { protocol, hostname, port } = window.location
+    const host = port ? `${hostname}:${port}` : hostname
+    setRegistrationUrl(`${protocol}//${host}/registration`)
   }, [])
 
   const handleCopy = () => {
