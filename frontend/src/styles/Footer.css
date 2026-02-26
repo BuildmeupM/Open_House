@@ -1,0 +1,47 @@
+/* ============================================
+   FOOTER (White & Orange Theme)
+   ============================================ */
+.footer {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.footer__icon {
+  color: var(--color-primary);
+}
+
+.footer__text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.footer__copyright {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer__heart {
+  color: var(--color-secondary);
+  animation: pulse 1.5s ease-in-out infinite;
+}

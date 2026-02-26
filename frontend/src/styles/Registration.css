@@ -1,0 +1,265 @@
+/* ============================================
+   REGISTRATION PAGE (White & Orange Theme)
+   ============================================ */
+.registration-page {
+  position: relative;
+  padding: 120px 0 80px;
+  min-height: 100vh;
+  background: linear-gradient(175deg, #FFF7ED 0%, #FFFFFF 60%);
+}
+
+.registration-page__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.registration-page__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+}
+
+.registration-page__orb--1 {
+  width: 400px;
+  height: 400px;
+  background: #F97316;
+  top: 10%;
+  right: -100px;
+}
+
+.registration-page__orb--2 {
+  width: 300px;
+  height: 300px;
+  background: #FBBF24;
+  bottom: 10%;
+  left: -80px;
+}
+
+.registration-page__header {
+  margin-bottom: 48px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.registration-form-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  animation: fadeInUp 0.7s ease-out;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-label svg {
+  color: var(--color-primary);
+}
+
+.required {
+  color: var(--color-secondary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.form-select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  background-color: var(--bg-card);
+}
+
+.form-select option {
+  background: white;
+  color: var(--text-primary);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.form-status--success {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: #16a34a;
+}
+
+.form-status--error {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #dc2626;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.05rem;
+  margin-top: 8px;
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.form-loading {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .registration-page {
+    padding: 100px 0 60px;
+  }
+
+  .form-input {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================
+   SUCCESS VIDEO MODAL
+   ============================================ */
+.success-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+  padding: 20px;
+}
+
+.success-modal {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  animation: scaleIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.success-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.success-modal-close:hover {
+  color: var(--color-danger);
+}
+
+.success-modal-video-container {
+  width: 280px;
+  height: 279.97px; /* ความสูงเป็น 99.99% ของความกว้าง เพื่อตัดขอบบน 0.005% และล่าง 0.005% */
+  border-radius: 16px; 
+  overflow: hidden;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff; 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.success-modal-video {
+  width: 100%;
+  height: 280px; /* บังคับให้คลิปมีความสูงเต็มเท่าด้านกว้าง แล้วให้คอนเทนเนอร์ครอปด้านบน-ล่างออกนิดหน่อย */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.success-modal-title {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.success-modal-desc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0 0 8px 0;
+}
+
+.success-modal-btn {
+  width: 100%;
+  max-width: 200px;
+  padding: 12px 24px;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

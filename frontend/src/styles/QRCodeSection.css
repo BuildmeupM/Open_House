@@ -1,0 +1,197 @@
+/* ============================================
+   QR CODE SECTION (White & Orange Theme)
+   ============================================ */
+.qr-section {
+  padding: var(--section-padding);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.qr-card {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 48px 36px;
+  text-align: center;
+  overflow: hidden;
+  animation: fadeInUp 0.7s ease-out;
+  box-shadow: var(--shadow-md);
+}
+
+.qr-card__glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: #F97316;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.06;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+
+
+/* QR Code wrapper */
+.qr-card__code-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 28px;
+}
+
+.qr-card__code {
+  position: relative;
+  padding: 8px;
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: inline-block;
+  border: 2px solid rgba(249, 115, 22, 0.15);
+}
+
+/* Corner decorations */
+.qr-card__corners {
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+}
+
+.qr-card__corners span {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--color-primary);
+  border-style: solid;
+  border-width: 0;
+}
+
+.qr-card__corners span:nth-child(1) {
+  top: 0; left: 0;
+  border-top-width: 3px;
+  border-left-width: 3px;
+  border-top-left-radius: 6px;
+}
+
+.qr-card__corners span:nth-child(2) {
+  top: 0; right: 0;
+  border-top-width: 3px;
+  border-right-width: 3px;
+  border-top-right-radius: 6px;
+}
+
+.qr-card__corners span:nth-child(3) {
+  bottom: 0; left: 0;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+  border-bottom-left-radius: 6px;
+}
+
+.qr-card__corners span:nth-child(4) {
+  bottom: 0; right: 0;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+  border-bottom-right-radius: 6px;
+}
+
+/* Info */
+.qr-card__info {
+  position: relative;
+}
+
+.qr-card__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.qr-card__label svg {
+  color: var(--color-primary);
+}
+
+.qr-card__url-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+
+.qr-card__url {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: var(--font-en);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.qr-card__copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--color-primary);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.qr-card__copy-btn:hover {
+  background: rgba(249, 115, 22, 0.2);
+}
+
+
+
+.qr-card__open-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .qr-card {
+    padding: 32px 24px;
+  }
+
+  .qr-card__code svg {
+    width: 240px !important;
+    height: 240px !important;
+  }
+}
+
+/* ===== QR Lion Corner ===== */
+.qr-lion-corner {
+  position: absolute;
+  bottom: -15px;
+  left: -35px;
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(249, 115, 22, 0.2));
+  animation: lionFloat 4s ease-in-out infinite;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes lionFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+

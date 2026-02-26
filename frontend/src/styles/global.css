@@ -1,0 +1,220 @@
+/* ============================================
+   GLOBAL STYLES — Open House (White & Orange)
+   ============================================ */
+
+/* --- CSS Variables / Design Tokens --- */
+:root {
+  /* Primary — Orange */
+  --color-primary: #F97316;
+  --color-primary-dark: #EA580C;
+  --color-primary-light: #FB923C;
+  --color-primary-glow: rgba(249, 115, 22, 0.2);
+
+  /* Secondary */
+  --color-secondary: #FF4D4D;
+  --color-secondary-dark: #E03E3E;
+
+  /* Accent — Deep Orange */
+  --color-accent: #FF8C00;
+  --color-accent-dark: #E07800;
+
+  /* Backgrounds — Light */
+  --bg-dark: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFF7ED;
+  --bg-surface: #FFF9F3;
+  --bg-input: #FAFAFA;
+
+  /* Text — Dark */
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+
+  /* Borders */
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(249, 115, 22, 0.3);
+
+  /* Fonts */
+  --font-thai: "Noto Sans Thai", sans-serif;
+  --font-en: "Inter", sans-serif;
+
+  /* Spacing */
+  --container-max: 1200px;
+  --section-padding: 80px 0;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Shadows — Light theme */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 4px 24px var(--color-primary-glow);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-thai);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: var(--font-thai);
+}
+
+input, textarea, select {
+  font-family: var(--font-thai);
+  outline: none;
+  border: none;
+}
+
+/* --- Utility --- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--color-primary-dark);
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+  font-weight: 400;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  box-shadow: 0 4px 20px var(--color-primary-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.35);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-primary-dark);
+  border: 2px solid var(--border-glow);
+}
+
+.btn-secondary:hover {
+  background: rgba(249, 115, 22, 0.08);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #FFF7ED; }
+::-webkit-scrollbar-thumb { background: var(--color-primary-light); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  :root { --section-padding: 48px 0; }
+  .section-title { font-size: 1.6rem; }
+  .section-subtitle { font-size: 0.95rem; margin-bottom: 32px; }
+  .btn { padding: 12px 24px; font-size: 0.9rem; }
+}

@@ -1,0 +1,225 @@
+/* ============================================
+   SCHEDULE PAGE (White & Orange Theme)
+   ============================================ */
+.schedule-page {
+  position: relative;
+  padding: 120px 0 80px;
+  min-height: 100vh;
+  background: linear-gradient(175deg, #FFF7ED 0%, #FFFFFF 60%);
+}
+
+.schedule-page__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.schedule-page__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.12;
+}
+
+.schedule-page__orb--1 {
+  width: 450px;
+  height: 450px;
+  background: #FBBF24;
+  top: 5%;
+  left: -120px;
+}
+
+.schedule-page__orb--2 {
+  width: 350px;
+  height: 350px;
+  background: #F97316;
+  bottom: 10%;
+  right: -100px;
+}
+
+.schedule-page__header {
+  text-align: center;
+  margin-bottom: 56px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.schedule-page__meta {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.schedule-page__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.schedule-page__meta-item svg {
+  color: var(--color-primary);
+}
+
+/* Timeline */
+.timeline {
+  max-width: 750px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 24px;
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.timeline-item__marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.timeline-item__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+  flex-shrink: 0;
+  margin-top: 6px;
+  transition: all var(--transition-fast);
+}
+
+.timeline-item--highlight .timeline-item__dot {
+  background: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent), 0 0 12px rgba(255, 140, 0, 0.3);
+}
+
+.timeline-item__line {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(to bottom, rgba(249, 115, 22, 0.25), transparent);
+  min-height: 20px;
+}
+
+.timeline-item__content {
+  flex: 1;
+  padding-bottom: 32px;
+}
+
+.timeline-item__time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: 8px;
+  font-family: var(--font-en);
+}
+
+.timeline-item__card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-item__card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.timeline-item--highlight .timeline-item__card {
+  border-color: rgba(255, 140, 0, 0.2);
+  background: linear-gradient(135deg, #FFFFFF, rgba(255, 140, 0, 0.04));
+}
+
+.timeline-item__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.timeline-item--highlight .timeline-item__icon {
+  background: rgba(255, 140, 0, 0.12);
+  color: var(--color-accent);
+}
+
+.timeline-item__info {
+  flex: 1;
+}
+
+.timeline-item__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.timeline-item__desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.timeline-item__badge {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .schedule-page {
+    padding: 100px 0 60px;
+  }
+
+  .timeline-item {
+    gap: 16px;
+  }
+
+  .timeline-item__card {
+    padding: 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .timeline-item__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .timeline-item__badge {
+    position: static;
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+}
