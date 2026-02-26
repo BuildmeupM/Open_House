@@ -1,4 +1,4 @@
-const API_BASE = '/api'
+const API_BASE = import.meta.env.VITE_API_BASE || "/api";
 
 /**
  * ส่งข้อมูลลงทะเบียนไปยัง Backend
@@ -7,17 +7,17 @@ const API_BASE = '/api'
  */
 export async function submitRegistration(formData) {
   const response = await fetch(`${API_BASE}/registration`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData)
-  })
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({}))
-    throw new Error(error.message || 'Registration failed')
+    const error = await response.json().catch(() => ({}));
+    throw new Error(error.message || "Registration failed");
   }
 
-  return response.json()
+  return response.json();
 }
 
 /**
@@ -25,13 +25,13 @@ export async function submitRegistration(formData) {
  * @returns {Promise<Array>} - รายการผู้ลงทะเบียน
  */
 export async function getRegistrations() {
-  const response = await fetch(`${API_BASE}/registration`)
+  const response = await fetch(`${API_BASE}/registration`);
 
   if (!response.ok) {
-    throw new Error('Failed to fetch registrations')
+    throw new Error("Failed to fetch registrations");
   }
 
-  return response.json()
+  return response.json();
 }
 
 /**
@@ -41,12 +41,12 @@ export async function getRegistrations() {
  */
 export async function deleteRegistration(id) {
   const response = await fetch(`${API_BASE}/registration/${id}`, {
-    method: 'DELETE'
-  })
+    method: "DELETE",
+  });
 
   if (!response.ok) {
-    throw new Error('Failed to delete registration')
+    throw new Error("Failed to delete registration");
   }
 
-  return response.json()
+  return response.json();
 }
