@@ -4,13 +4,28 @@ const { pool } = require('../db')
 
 /**
  * GET /api/registration
- * ดึงรายการผู้ลงทะเบียนทั้งหมด
+ * ดึงรายการผู้ลงทะเบียน (กรองตามวันที่ได้ด้วย ?date=YYYY-MM-DD)
  */
 router.get('/', async (req, res) => {
   try {
-    const [rows] = await pool.execute(
-      'SELECT * FROM registrations ORDER BY created_at DESC'
-    )
+    const { date } = req.query
+
+    let rows
+    if (date) {
+      // กรองตามวันที่ที่เลือก
+      ;[rows] = await pool.execute(
+        `SELECT * FROM registrations 
+         WHERE DATE(created_at) = ?
+         ORDER BY created_at DESC`,
+        [date]
+      )
+    } else {
+      // ดึงทั้งหมด
+      ;[rows] = await pool.execute(
+        'SELECT * FROM registrations ORDER BY created_at DESC'
+      )
+    }
+
     res.json(rows)
   } catch (error) {
     console.error('Error fetching registrations:', error)

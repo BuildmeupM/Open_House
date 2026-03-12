@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { CalendarDays, Clock, MapPin, Users, UserCheck } from "lucide-react";
 import QRCodeSection from "../components/QRCodeSection";
 import { getRegistrations } from "../services/registrationService";
@@ -70,6 +70,13 @@ function Home() {
   const [registrations, setRegistrations] = useState([]);
   const [newEntryId, setNewEntryId] = useState(null);
 
+  /* วันที่ที่เลือกสำหรับกรองผู้ลงทะเบียน (default = วันนี้) */
+  const todayStr = useMemo(() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }, []);
+  const [selectedDate, setSelectedDate] = useState(todayStr);
+
   /* อัปเดตเวลา */
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
@@ -82,7 +89,7 @@ function Home() {
 
     const fetchData = async () => {
       try {
-        const data = await getRegistrations();
+        const data = await getRegistrations(selectedDate);
         // ตรวจหา entry ใหม่
         const currentIds = new Set(data.map((r) => r.id));
         const newIds = [...currentIds].filter((id) => !prevIds.has(id));
@@ -100,7 +107,7 @@ function Home() {
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [selectedDate]);
 
   /* เวลาปัจจุบันเป็นนาที */
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
@@ -118,9 +125,9 @@ function Home() {
     }
   };
 
-  /* ตรวจสอบว่าเป็นวันงานหรือไม่ (26 ก.พ. 2026) */
+  /* ตรวจสอบว่าเป็นวันงานหรือไม่ (13 มี.ค. 2026) */
   const isEventDay =
-    now.getFullYear() === 2026 && now.getMonth() === 1 && now.getDate() === 26;
+    now.getFullYear() === 2026 && now.getMonth() === 2 && now.getDate() === 13;
 
   /* หาสถานะของแต่ละรายการ */
   const getStatus = (item) => {
@@ -160,7 +167,7 @@ function Home() {
         <h1 className="home-banner__title">ยินดีต้อนรับสู่บ้านของพวกเรา</h1>
         <div className="home-banner__meta">
           <span>
-            <CalendarDays size={15} /> วันพฤหัสที่ 26 กุมภาพันธ์
+            <CalendarDays size={15} /> วันศุกร์ที่ 13 มีนาคม
           </span>
           <span>
             <Clock size={15} /> 11:00 - 17:30 น.
@@ -194,6 +201,15 @@ function Home() {
               {registrations.length} คน
             </span>
           </h2>
+          <div className="reg-date-picker">
+            <CalendarDays size={14} />
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              className="reg-date-picker__input"
+            />
+          </div>
           <div className="home-box__content reg-list-wrapper">
             {registrations.length === 0 ? (
               <div className="reg-list__empty">

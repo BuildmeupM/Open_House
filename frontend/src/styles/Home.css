@@ -146,6 +146,43 @@
   border-radius: 50px;
 }
 
+/* ===== Date Picker (เลือกวันแสดงผล) ===== */
+.reg-date-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, rgba(249,115,22,0.06), rgba(234,88,12,0.04));
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.reg-date-picker__input {
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: var(--font-en);
+}
+
+.reg-date-picker__input:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.1);
+}
+
+.reg-date-picker__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
 /* ===== Registration List Box ===== */
 .reg-list-wrapper {
   padding: 12px 16px !important;

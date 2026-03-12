@@ -21,11 +21,15 @@ export async function submitRegistration(formData) {
 }
 
 /**
- * ดึงรายการผู้ลงทะเบียนทั้งหมด
+ * ดึงรายการผู้ลงทะเบียน (กรองตามวันที่ได้)
+ * @param {string} [date] - วันที่ในรูปแบบ YYYY-MM-DD (optional)
  * @returns {Promise<Array>} - รายการผู้ลงทะเบียน
  */
-export async function getRegistrations() {
-  const response = await fetch(`${API_BASE}/registration`);
+export async function getRegistrations(date) {
+  const url = date
+    ? `${API_BASE}/registration?date=${date}`
+    : `${API_BASE}/registration`;
+  const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error("Failed to fetch registrations");
