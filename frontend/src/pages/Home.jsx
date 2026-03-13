@@ -37,20 +37,13 @@ const schedule = [
   {
     id: 4,
     startTime: "15:30",
-    endTime: "16:00",
-    title: "มุมมองจากพนักงาน “เสาหลักที่ 4” ต่อองค์กร",
-    img: "/สิงโต ยืนถือโน๊ตบุค.png",
-  },
-  {
-    id: 5,
-    startTime: "16:00",
-    endTime: "17:00",
+    endTime: "16:30",
     title: "เยี่ยมชมแต่ละแผนกภายในบริษัท",
     img: "/สิงโต สงสัย กำลังคิด.png",
   },
   {
-    id: 6,
-    startTime: "17:00",
+    id: 5,
+    startTime: "16:30",
     endTime: "17:30",
     title: "ช่วงถาม–ตอบ (Q&A)",
     img: "/สิงโต ชี้ขึ้น.png",
@@ -64,11 +57,22 @@ function timeToMinutes(t) {
   return h * 60 + m;
 }
 
+/* แปลง YYYY-MM-DD เป็น "13 มีนาคม" */
+const THAI_MONTHS = [
+  'มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน',
+  'กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'
+];
+function formatThaiDate(dateStr) {
+  const [, m, d] = dateStr.split('-').map(Number);
+  return `${d} ${THAI_MONTHS[m - 1]}`;
+}
+
 function Home() {
   const [now, setNow] = useState(new Date());
   const alertedRef = useRef(new Set());
   const [registrations, setRegistrations] = useState([]);
   const [newEntryId, setNewEntryId] = useState(null);
+  const dateInputRef = useRef(null);
 
   /* วันที่ที่เลือกสำหรับกรองผู้ลงทะเบียน (default = วันนี้) */
   const todayStr = useMemo(() => {
@@ -176,9 +180,25 @@ function Home() {
             <MapPin size={15} /> สำนักงาน BMU
           </span>
         </div>
-        <div className="home-banner__clock">
-          <Clock size={20} />
-          <span className="home-banner__clock-time">{clockStr}</span>
+        <div className="home-banner__datetime">
+          <div
+            className="home-banner__date-picker"
+            onClick={() => dateInputRef.current?.showPicker?.()}
+          >
+            <CalendarDays size={16} />
+            <span className="home-banner__date-text">{formatThaiDate(selectedDate)}</span>
+            <input
+              ref={dateInputRef}
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              className="home-banner__date-input-hidden"
+            />
+          </div>
+          <div className="home-banner__clock">
+            <Clock size={20} />
+            <span className="home-banner__clock-time">{clockStr}</span>
+          </div>
         </div>
       </header>
 
@@ -201,15 +221,7 @@ function Home() {
               {registrations.length} คน
             </span>
           </h2>
-          <div className="reg-date-picker">
-            <CalendarDays size={14} />
-            <input
-              type="date"
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="reg-date-picker__input"
-            />
-          </div>
+
           <div className="home-box__content reg-list-wrapper">
             {registrations.length === 0 ? (
               <div className="reg-list__empty">
